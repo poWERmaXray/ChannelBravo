@@ -1,10 +1,8 @@
 package ray.channelBravo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 import ray.channelBravo.bean.BravoUser;
 import ray.channelBravo.service.BravoUserService;
 
@@ -15,9 +13,12 @@ public class RegisterController {
     @Autowired
     private BravoUserService bravoUserService;
 
-    @PostMapping("/SingUp")
-    public ResponseEntity<String> registerNewUser(BravoUser user){
-        Long insertedId = bravoUserService.singUp(user);
-        return ResponseEntity.ok(insertedId.toString());
+    @PostMapping("/SignUp")
+    public RedirectView submitSignUpForm(@ModelAttribute BravoUser user) {
+        Long result = bravoUserService.singUp(user);
+        if (0 == result){
+            return new RedirectView("Welcome");
+        }
+        return null;
     }
 }

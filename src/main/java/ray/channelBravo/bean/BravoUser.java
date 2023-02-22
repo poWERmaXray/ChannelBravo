@@ -2,6 +2,7 @@ package ray.channelBravo.bean;
 
 import com.alibaba.druid.sql.visitor.functions.Char;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,7 +12,9 @@ import java.util.List;
 public class BravoUser implements Serializable {
     private static final long serialVersionUID = 7016709135039922768L;
     private Long bravoId;
-    private Character bravoGender;
+    private String bravoGender;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date bravoBirthday;
     private String bravoName;
     private Integer bravoAge;
@@ -20,7 +23,7 @@ public class BravoUser implements Serializable {
     private String password;
 
     private BravoUser() {}
-    public static BravoUser of(Character gender, Date birthday, String name, Integer age, String account, String password){
+    public static BravoUser of(String gender, Date birthday, String name, Integer age, String account, String password){
         BravoUser bravoUser = new BravoUser();
         bravoUser.bravoGender = gender;
         bravoUser.bravoBirthday = birthday;
@@ -29,5 +32,9 @@ public class BravoUser implements Serializable {
         bravoUser.accountId = account;
         bravoUser.password = password;
         return bravoUser;
+    }
+
+    public static BravoUser of() {
+        return new BravoUser();
     }
 }

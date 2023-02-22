@@ -4,19 +4,47 @@
 
 <mapper namespace="ray.channelBravo.mapper.BravoUserMapper">
     <insert id="registerBravoUser" parameterType="ray.channelBravo.bean.BravoUser">
-        insert into bravo_user (
-            bravo_gender,
-            bravo_birthday,
-            bravo_name,
-            bravo_age,
-            account_id,
-            password)
-        values (
-            #{bravoGender},
-            #{bravoBirthday},
-            #{bravoName},
-            #{bravoAge},
-            #{accountId},
-            #{password})
+        insert into bravo_user
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bravoGender != null and bravoGender != ''">
+                bravo_gender,
+            </if>
+            <if test="bravoBirthday != null">
+                bravo_birthday,
+            </if>
+            <if test="bravoName != null and bravoName != ''">
+                bravo_name,
+            </if>
+            <if test="bravoAge != null and bravoAge != ''">
+                bravo_age,
+            </if>
+            <if test="accountId != null and accountId != ''">
+                account_id,
+            </if>
+            <if test="password != null and password != ''">
+                password,
+            </if>
+            </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bravoGender != null and bravoGender != ''">
+                #{bravoGender},
+            </if>
+            <if test="bravoBirthday != null">
+                #{bravoBirthday},
+            </if>
+            <if test="bravoName != null and bravoName != ''">
+                #{bravoName},
+            </if>
+            <if test="bravoAge != null and bravoAge != ''">
+                #{bravoAge},
+            </if>
+            <if test="accountId != null and accountId != ''">
+                #{accountId},
+            </if>
+            <if test="password != null and password != ''">
+                #{password}
+            </if>
+        </trim>
     </insert>
 </mapper>
