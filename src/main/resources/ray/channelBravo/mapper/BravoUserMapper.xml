@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ray.channelBravo.mapper.BravoUserMapper">
+    <insert id="registerBravoUser" parameterType="ray.channelBravo.bean.BravoUser">
+        insert into bravo_user (
+            bravo_gender,
+            bravo_birthday,
+            bravo_name,
+            bravo_age,
+            account_id,
+            password)
+        values (
+            #{bravoGender},
+            #{bravoBirthday},
+            #{bravoName},
+            #{bravoAge},
+            #{accountId},
+            #{password})
+    </insert>
+</mapper>
