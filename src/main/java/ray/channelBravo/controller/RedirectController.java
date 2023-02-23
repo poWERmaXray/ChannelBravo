@@ -1,5 +1,6 @@
 package ray.channelBravo.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -14,5 +15,10 @@ public class RedirectController {
     @GetMapping("")
     public String welcome() {
         return "Welcome";
+    }
+
+    @GetMapping("/Unreal")
+    public ResponseEntity<String> unrealConnection() {
+        return ResponseEntity.ok("OK");
     }
 }

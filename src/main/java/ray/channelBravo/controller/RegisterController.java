@@ -14,7 +14,7 @@ public class RegisterController {
     private BravoUserService bravoUserService;
 
     @PostMapping("/SignUp")
-    public RedirectView submitSignUpForm(@ModelAttribute BravoUser user) {
+    public RedirectView submitSignUpForm(BravoUser user) {
         Long result = bravoUserService.singUp(user);
         if (0 == result){
             return new RedirectView("Welcome");
